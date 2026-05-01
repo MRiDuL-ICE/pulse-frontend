@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: #000000;
+  color: #FFF72F;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFF72F;
+}
+
+/* ── Selection ── */
+::selection {
+  background: #FFF72F;
+  color: #000;
+}
+
+/* ── CRT scanlines overlay ── */
+.crt::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px);
+  pointer-events: none;
+  z-index: 9999;
+  animation: flicker 0.15s infinite;
+}
+
+/* ── Moving scanline ── */
+.scanline-sweep::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.4), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ── Neon text ── */
+.neon-green {
+  color: #FFF72F;
+  text-shadow: 0 0 7px #00FF41, 0 0 10px #00FF41, 0 0 21px #00FF41;
+}
+
+.neon-yellow {
+  color: #FFF72F;
+  text-shadow: 0 0 7px #00FFFF, 0 0 10px #00FFFF, 0 0 21px #00FFFF;
+}
+
+.neon-cyan {
+  color: #00FFFF;
+  text-shadow: 0 0 7px #00FFFF, 0 0 10px #00FFFF, 0 0 21px #00FFFF;
+}
+
+.neon-pink {
+  color: #FF0080;
+  text-shadow: 0 0 7px #FF0080, 0 0 10px #FF0080;
+}
+
+/* ── Glitch clip paths ── */
+.clip-brutal {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.clip-brutal-sm {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.clip-brutal-lg {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+/* ── Panel ── */
+.cyber-panel {
+  background: #0A0A0A;
+  border: 1px solid #00FF4133;
+  position: relative;
+}
+
+.cyber-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00FF41, transparent);
+}
+
+.cyber-panel-cyan {
+  background: #0A0A0A;
+  border: 1px solid #00FFFF33;
+  position: relative;
+}
+
+.cyber-panel-cyan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00FFFF, transparent);
+}
+
+/* ── Noise texture ── */
+.noise-bg {
+  position: relative;
+}
+
+.noise-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  animation: noise 0.5s steps(10) infinite;
+}
+
+/* ── Input ── */
+.cyber-input {
+  background: #050505;
+  border: 1px solid #00FF4133;
+  color: #FFF72F;
+  font-family: 'Share Tech Mono', monospace;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.cyber-input:focus {
+  border-color: #FFF72F;
+  box-shadow: 0 0 10px #00FF4144, inset 0 0 10px #00FF4108;
+}
+
+.cyber-input::placeholder {
+  color: #00FF4144;
+}
+
+/* ── Button base ── */
+.cyber-btn {
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: crosshair;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+  background-color: #00FFFF;
+}
+
+.cyber-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(0, 255, 65, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cyber-btn:hover::after {
+  opacity: 1;
+}
+
+/* ── Grid background ── */
+.grid-bg {
+  background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Terminal cursor ── */
+.cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: #FFF72F;
+}
+
+/* ── Data tag ── */
+.data-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #FFF72F;
+  border: 1px solid #00FF4133;
+  padding: 2px 8px;
+  font-weight: 600;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.97;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: -3px;
+  }
+
+  100% {
+    top: 100vh;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes noise {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-2%, -3%);
+  }
+
+  20% {
+    transform: translate(3%, 1%);
+  }
+
+  30% {
+    transform: translate(-1%, 4%);
+  }
+
+  40% {
+    transform: translate(2%, -2%);
+  }
+
+  50% {
+    transform: translate(-3%, 2%);
+  }
+
+  60% {
+    transform: translate(1%, -1%);
+  }
+
+  70% {
+    transform: translate(-2%, 3%);
+  }
+
+  80% {
+    transform: translate(3%, -3%);
+  }
+
+  90% {
+    transform: translate(-1%, 1%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
