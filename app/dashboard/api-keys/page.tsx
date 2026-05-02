@@ -13,7 +13,6 @@ import SnippetModal from "@/components/dashboard/SnippetModal";
 export default function ApiKeysPage() {
   const [token, setToken] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [showSnippet, setShowSnippet] = useState(false);
 
   const qc = useQueryClient();

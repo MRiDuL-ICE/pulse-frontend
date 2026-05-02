@@ -6,6 +6,7 @@ import { analytics } from "@/lib/api";
 import { getAccessToken } from "@/lib/auth";
 import { formatNumber } from "@/lib/utils";
 import CyberAreaChart from "@/components/charts/CyberAreaChart";
+import { useSite } from "@/context/SiteContext";
 
 const RANGES = [
   { label: "24H", days: 1 },
@@ -16,6 +17,8 @@ const RANGES = [
 export default function PageviewsPage() {
   const [token, setToken] = useState("");
   const [range, setRange] = useState(7);
+
+  const { activeSite } = useSite();
   useEffect(() => {
     setToken(getAccessToken() || "");
   }, []);
@@ -25,7 +28,7 @@ export default function PageviewsPage() {
 
   const { data, isLoading } = useQuery({
     queryKey: ["pv-detail", token, range],
-    queryFn: () => analytics.pageviews(token, start, end),
+    queryFn: () => analytics.pageviews(token, activeSite!.id, start, end),
     enabled: !!token,
     refetchInterval: 30_000,
   });

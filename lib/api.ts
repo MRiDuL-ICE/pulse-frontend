@@ -25,28 +25,43 @@ export const auth = {
 }
 
 export const analytics = {
-  pageviews: (token: string, start?: string, end?: string) => {
+  pageviews: (token: string, site_id: string, start?: string, end?: string) => {
     const p = new URLSearchParams()
+    p.set("site_id", site_id)
     if (start) p.set("start", start)
     if (end) p.set("end", end)
     return request<{ data: { bucket: string; count: number }[] }>(`/api/v1/analytics/pageviews?${p}`, {}, token)
   },
-  topPages: (token: string, limit = 10) =>
-    request<{ data: { url: string; count: number }[] }>(`/api/v1/analytics/top-pages?limit=${limit}`, {}, token),
-  eventBreakdown: (token: string) =>
-    request<{ data: { event_type: string; count: number }[] }>("/api/v1/analytics/events", {}, token),
+  topPages: (token: string, site_id: string, limit: number = 10) =>
+    request<{ data: { url: string; count: number }[] }>(`/api/v1/analytics/top-pages?site_id=${site_id}&limit=${limit}`, {}, token),
+  eventBreakdown: (token: string, site_id: string) =>
+    request<{ data: { event_type: string; count: number }[] }>(`/api/v1/analytics/events?site_id=${site_id}`, {}, token),
 }
 
 export const apiKeys = {
   list: (token: string) => request<ApiKey[]>("/api/v1/api-keys", {}, token),
-  create: (token: string, name: string) =>
-    request<ApiKey & { key: string; warning: string }>("/api/v1/api-keys", { method: "POST", body: JSON.stringify({ name }) }, token),
+  create: (token: string, name: string, site_id: string) =>
+    request<ApiKey & { key: string; warning: string }>("/api/v1/api-keys", { method: "POST", body: JSON.stringify({ name, site_id }) }, token),
   revoke: (token: string, id: string) => request<void>(`/api/v1/api-keys/${id}`, { method: "DELETE" }, token),
 }
 
 export const tenant = {
   me: (token: string) =>
     request<{ id: string; name: string; slug: string }>("/api/v1/tenants/me", {}, token),
+}
+
+export const sites = {
+  list: (token: string) =>
+    request<Site[]>("/api/v1/sites", {}, token),
+
+  create: (token: string, name: string, domain: string) =>
+    request<Site>("/api/v1/sites", {
+      method: "POST",
+      body: JSON.stringify({ name, domain }),
+    }, token),
+
+  remove: (token: string, id: string) =>
+    request<void>(`/api/v1/sites/${id}`, { method: "DELETE" }, token),
 }
 
 export interface ApiKey {
@@ -56,5 +71,13 @@ export interface ApiKey {
   key_prefix: string
   is_active: boolean
   last_used_at: string | null
+  created_at: string
+}
+
+export interface Site {
+  id: string
+  name: string
+  domain: string
+  is_active: boolean
   created_at: string
 }

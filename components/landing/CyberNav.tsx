@@ -34,7 +34,7 @@ export default function CyberNav() {
         scrolled ? "bg-black/95 border-b border-[#FFF72F]/30" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-7 h-7 border border-[#FFF72F] flex items-center justify-center clip-brutal-sm animate-pulse-green">
@@ -45,33 +45,28 @@ export default function CyberNav() {
             className="text-[#FFF72F] font-mono text-lg tracking-[0.2em] font-bold"
             intensity="low"
           />
-          <span className="text-[#FFF72F] text-xs hidden md:block tracking-widest">
-            v2.0.1
-          </span>
+          {/* System clock */}
+          <div className="hidden md:flex items-center gap-2 text-[#FFF72F]/50 text-xs font-mono">
+            <Terminal className="w-3 h-3" />
+            <span>SYS_TIME:</span>
+            <span className="text-[#FFF72F]">{time}</span>
+          </div>
         </Link>
 
-        {/* System clock */}
-        <div className="hidden md:flex items-center gap-2 text-[#FFF72F]/50 text-xs font-mono">
-          <Terminal className="w-3 h-3" />
-          <span>SYS_TIME:</span>
-          <span className="text-[#FFF72F]">{time}</span>
-        </div>
-
-        {/* Nav links */}
-        <div className="hidden md:flex items-center gap-6">
-          {["FEATURES", "PROTOCOL", "PRICING"].map((label) => (
-            <a
-              key={label}
-              href={`#${label.toLowerCase()}`}
-              className="text-[#FFF72F] hover:text-cyan-electric text-xs tracking-widest transition-colors duration-200 hover:text-shadow-neon-green font-mono"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-
         {/* CTAs */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 border border-cyan-electric clip-brutal-lg px-10 py-2 text-cyan-electric font-mono text-xs font-bold tracking-widest animate-glow-clockwise transition-all duration-100">
+          {/* Nav links */}
+          <div className="hidden md:flex items-end gap-6">
+            {["FEATURES", "PROTOCOL", "PRICING"].map((label) => (
+              <a
+                key={label}
+                href={`#${label.toLowerCase()}`}
+                className="text-[#FFF72F] hover:text-cyan-electric text-xs tracking-widest transition-colors duration-200 hover:text-shadow-neon-green font-mono"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
           {user?.id ? (
             <Link
               href="/dashboard"

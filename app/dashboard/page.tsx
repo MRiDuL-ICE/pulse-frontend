@@ -9,6 +9,7 @@ import { formatNumber } from "@/lib/utils";
 import CyberStatCard from "@/components/dashboard/CyberStatCard";
 import CyberAreaChart from "@/components/charts/CyberAreaChart";
 import CyberDonut from "@/components/charts/CyberDonut";
+import { useSite } from "@/context/SiteContext";
 
 export default function DashboardOverview() {
   const [token, setToken] = useState("");
@@ -16,21 +17,23 @@ export default function DashboardOverview() {
     setToken(getAccessToken() || "");
   }, []);
 
+  const { activeSite } = useSite();
+
   const { data: pv, isLoading: pvLoad } = useQuery({
     queryKey: ["pv", token],
-    queryFn: () => analytics.pageviews(token),
+    queryFn: () => analytics.pageviews(token, activeSite!.id),
     enabled: !!token,
     refetchInterval: 30_000,
   });
   const { data: top } = useQuery({
     queryKey: ["top", token],
-    queryFn: () => analytics.topPages(token, 8),
+    queryFn: () => analytics.topPages(token, activeSite!.id, 8),
     enabled: !!token,
     refetchInterval: 30_000,
   });
   const { data: ev } = useQuery({
     queryKey: ["ev", token],
-    queryFn: () => analytics.eventBreakdown(token),
+    queryFn: () => analytics.eventBreakdown(token, activeSite!.id),
     enabled: !!token,
     refetchInterval: 30_000,
   });

@@ -308,3 +308,37 @@ body {
     transform: translate(0, 0);
   }
 }
+
+@keyframes glowClockwise {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  25% {
+    background-position: 100% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@layer utilities {
+  .animate-glow-clockwise {
+    position: relative;
+    background: linear-gradient(to right, transparent, #00FFFF, transparent) 0% 0% / 100% 2px no-repeat,
+      linear-gradient(to bottom, transparent, #00FFFF, transparent) 100% 0% / 2px 100% no-repeat,
+      linear-gradient(to left, transparent, #00FFFF, transparent) 100% 100% / 100% 2px no-repeat,
+      linear-gradient(to top, transparent, #00FFFF, transparent) 0% 100% / 2px 100% no-repeat;
+    background-attachment: fixed;
+    animation: glowClockwise 5s linear infinite;
+  }
+}

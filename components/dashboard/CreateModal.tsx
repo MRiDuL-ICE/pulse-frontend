@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { apiKeys, type ApiKey } from "@/lib/api";
 import { toast } from "sonner";
+import { useSite } from "@/context/SiteContext";
 
 function CreateModal({
   onClose,
@@ -25,8 +26,10 @@ function CreateModal({
   const [copied, setCopied] = useState(false);
   const qc = useQueryClient();
 
+  const { activeSite } = useSite();
+
   const mut = useMutation({
-    mutationFn: () => apiKeys.create(token, name),
+    mutationFn: () => apiKeys.create(token, name, activeSite!.id),
     onSuccess: (data) => {
       setCreatedKey(data.key);
       qc.invalidateQueries({ queryKey: ["apiKeys"] });

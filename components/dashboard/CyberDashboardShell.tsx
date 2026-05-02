@@ -12,6 +12,9 @@ import {
   Menu,
   X,
   Terminal,
+  Plus,
+  Globe,
+  ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { getAccessToken } from "@/lib/auth";
@@ -19,12 +22,14 @@ import { tenant } from "@/lib/api";
 import NeonGrid from "@/components/effects/NeonGrid";
 import Scanlines from "@/components/effects/Scanlines";
 import GlitchText from "@/components/effects/GlitchText";
+import { useSite } from "@/context/SiteContext";
 
 const NAV = [
   { label: "OVERVIEW", href: "/dashboard", icon: Activity },
   { label: "PAGEVIEWS", href: "/dashboard/pageviews", icon: TrendingUp },
   { label: "EVENTS", href: "/dashboard/events", icon: Zap },
   { label: "API_KEYS", href: "/dashboard/api-keys", icon: Key },
+  { label: "SITES", href: "/dashboard/sites", icon: Globe },
 ];
 
 export default function CyberDashboardShell({
@@ -38,6 +43,8 @@ export default function CyberDashboardShell({
   const [open, setOpen] = useState(false);
   const [tenantName, setTenantName] = useState("LOADING...");
   const [time, setTime] = useState("");
+  const { activeSite, allSites, setActiveSite } = useSite();
+  const [siteDropOpen, setSiteDropOpen] = useState(false);
 
   useEffect(() => {
     const tick = () =>
@@ -88,14 +95,56 @@ export default function CyberDashboardShell({
           />
         </a>
 
-        {/* Tenant */}
-        <div className="mx-4 mt-4 mb-2 px-3 py-2 border border-[#FFF72F]/10 bg-[#FFF72F]/5">
-          <div className="text-[#FFF72F] font-mono text-[9px] tracking-widest mb-1">
-            ACTIVE_TENANT
-          </div>
-          <div className="text-[#FFF72F] font-mono text-xs truncate">
-            {tenantName}
-          </div>
+        <div className="relative mx-4 mt-4 mb-2">
+          <button
+            onClick={() => setSiteDropOpen(!siteDropOpen)}
+            className="w-full flex items-center gap-2 px-3 py-2 border border-cyan-electric hover:border-accent-green/40 bg-slate-panel rounded-lg transition-all"
+          >
+            <Globe className="w-3.5 h-3.5 text-accent-green flex-shrink-0" />
+            <span className="text-text-primary text-sm font-medium truncate flex-1 text-left">
+              {activeSite?.name ?? "Select site"}
+            </span>
+            <ChevronDown
+              className={`w-3.5 h-3.5 text-text-muted transition-transform ${siteDropOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {siteDropOpen && (
+            <div className="absolute top-full left-0 right-0 mt-1 border border-cyan-electric rounded-lg shadow-xl z-50 overflow-hidden bg-[#FFF72F] text-black">
+              {allSites.map((site) => (
+                <button
+                  key={site.id}
+                  onClick={() => {
+                    setActiveSite(site);
+                    setSiteDropOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-2 px-3 py-2.5 text-sm transition-colors hover:bg-cyan-electric hover:text-black ${
+                    activeSite?.id === site.id
+                      ? "text-accent-green"
+                      : "text-text-secondary"
+                  }`}
+                >
+                  <div
+                    className={`w-1.5 h-1.5 rounded-full ${activeSite?.id === site.id ? "bg-cyan-electric" : ""}`}
+                  />
+                  <div className="text-left min-w-0">
+                    <div className="font-medium truncate">{site.name}</div>
+                    <div className="text-text-muted text-xs truncate">
+                      {site.domain}
+                    </div>
+                  </div>
+                </button>
+              ))}
+              <div className="border-t border-cyan-electric">
+                <a
+                  href="/dashboard/sites"
+                  className="flex items-center gap-2 px-3 py-2.5 text-sm text-text-muted hover:text-accent-green transition-colors hover:bg-cyan-electric hover:text-black"
+                >
+                  <Plus className="w-3.5 h-3.5" /> Add new site
+                </a>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Nav */}
@@ -225,7 +274,7 @@ export default function CyberDashboardShell({
             <div className="flex items-center gap-2">
               <Terminal className="w-3.5 h-3.5 text-[#FFF72F]/80" />
               <span className="text-[#FFF72F]/80 font-mono text-xs tracking-widest hidden sm:block">
-                PULSE {">"} {currentLabel}
+                PULSE({activeSite!.name}) {">"} {currentLabel}
               </span>
             </div>
           </div>

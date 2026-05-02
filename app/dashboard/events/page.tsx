@@ -17,6 +17,7 @@ import { getAccessToken } from "@/lib/auth";
 import { formatNumber } from "@/lib/utils";
 import CyberDonut from "@/components/charts/CyberDonut";
 import { useAuth } from "@/hooks/useAuth";
+import { useSite } from "@/context/SiteContext";
 
 const COLORS = [
   "#00FF41",
@@ -47,9 +48,11 @@ export default function EventsPage() {
     setToken(getAccessToken() || "");
   }, []);
 
+  const { activeSite } = useSite();
+
   const { data, isLoading } = useQuery({
     queryKey: ["ev-detail", token],
-    queryFn: () => analytics.eventBreakdown(token),
+    queryFn: () => analytics.eventBreakdown(token, activeSite!.id),
     enabled: !!token,
     refetchInterval: 30_000,
   });
