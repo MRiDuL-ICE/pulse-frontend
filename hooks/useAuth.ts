@@ -1,13 +1,16 @@
 "use client"
 import { useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
-import { auth } from "@/lib/api"
+import { auth, tenant } from "@/lib/api"
 import { setTokens, getAccessToken, getRefreshToken, clearTokens } from "@/lib/auth"
 import { toast } from "sonner"
+import { useAuth as useAuthContext } from "@/context/AuthContext"
+
 
 export function useAuth() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const { fetchUser } = useAuthContext()
 
 
 
@@ -16,6 +19,7 @@ export function useAuth() {
     try {
       const data = await auth.login({ email, password })
       setTokens(data.access_token, data.refresh_token)
+      await fetchUser(data.access_token)
       toast.success("// ACCESS_GRANTED")
       router.push("/dashboard")
     } catch (e: any) {
@@ -47,10 +51,10 @@ export function useAuth() {
   const user = useCallback(async () => {
     const access = getAccessToken()
     if (access) {
-      const user = await auth.me(access)
-      // return user
-      console.log("user", user)
+      const user = await tenant.me(access)
+      return user
     }
+    console.log("user", user)
   }, [])
 
   return { loading, login, register, logout, user }

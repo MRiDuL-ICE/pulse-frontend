@@ -70,7 +70,7 @@ export default function CyberHero() {
               className="inline-flex items-center gap-2 mb-8 border border-[#FFF72F]/30 px-3 py-1.5"
             >
               <div className="w-2 h-2 bg-[#FFF72F] animate-pulse" />
-              <span className="text-[#FFF72F]/70 text-xs tracking-widest font-mono">
+              <span className="text-[#FFF72F] text-xs tracking-widest font-mono">
                 SYSTEM_STATUS: OPERATIONAL
               </span>
             </motion.div>
@@ -137,13 +137,13 @@ export default function CyberHero() {
             >
               <Link
                 href="/register"
-                className="cyber-btn bg-[#FFF72F] text-black font-bold text-sm tracking-widest px-8 py-3 clip-brutal hover:shadow-neon-green transition-all duration-200 flex items-center gap-2"
+                className="cyber-btn border border-[#FFF72F]/40 text-black text-sm tracking-widest px-8 py-3 hover:border-[#FFF72F] hover:shadow-neon-sm-green transition-all duration-200"
               >
                 INITIALIZE_SYSTEM →
               </Link>
               <Link
                 href="/login"
-                className="cyber-btn border border-[#FFF72F]/40 text-black text-sm tracking-widest px-8 py-3 hover:border-[#FFF72F] hover:shadow-neon-sm-green transition-all duration-200"
+                className="cyber-btn border border-[#FFF72F]/40 text-black text-sm tracking-widest px-8 py-3 hover:border-[#FFF72F] hover:shadow-neon-sm-green transition-all duration-200 clip-brutal-sm"
               >
                 ACCESS_TERMINAL
               </Link>
@@ -182,7 +182,7 @@ export default function CyberHero() {
                   <div className={`font-mono text-lg font-bold ${color}`}>
                     {value}
                   </div>
-                  <div className="text-[#FFF72F]/70 text-[9px] tracking-wider mt-1">
+                  <div className="text-[#FFF72F] text-[9px] tracking-wider mt-1">
                     {label}
                   </div>
                 </div>
@@ -273,7 +273,7 @@ export default function CyberHero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <div className="text-[#FFF72F]/70 text-xs font-mono tracking-widest">
+        <div className="text-[#FFF72F] text-xs font-mono tracking-widest">
           SCROLL_DOWN
         </div>
         <div className="w-px h-12 bg-gradient-to-b from-[#FFF72F]/40 to-transparent" />

@@ -74,7 +74,10 @@ export default function CyberDashboardShell({
       {/* Sidebar — desktop */}
       <aside className="hidden lg:flex flex-col w-60 border-r border-[#FFF72F]/20 bg-black/90 fixed inset-y-0 left-0 z-30">
         {/* Logo */}
-        <div className="h-14 flex items-center gap-3 px-5 border-b border-[#FFF72F]/20">
+        <a
+          href="/"
+          className="h-14 flex items-center gap-3 px-5 border-b border-[#FFF72F]/20"
+        >
           <div className="w-6 h-6 border border-[#FFF72F] flex items-center justify-center animate-pulse-green flex-shrink-0">
             <Activity className="w-3 h-3 text-[#FFF72F]" />
           </div>
@@ -83,11 +86,11 @@ export default function CyberDashboardShell({
             className="neon-green font-mono text-base font-bold tracking-[0.2em]"
             intensity="low"
           />
-        </div>
+        </a>
 
         {/* Tenant */}
         <div className="mx-4 mt-4 mb-2 px-3 py-2 border border-[#FFF72F]/10 bg-[#FFF72F]/5">
-          <div className="text-[#FFF72F]/70 font-mono text-[9px] tracking-widest mb-1">
+          <div className="text-[#FFF72F] font-mono text-[9px] tracking-widest mb-1">
             ACTIVE_TENANT
           </div>
           <div className="text-[#FFF72F] font-mono text-xs truncate">
@@ -97,7 +100,7 @@ export default function CyberDashboardShell({
 
         {/* Nav */}
         <nav className="flex-1 px-3 py-3 space-y-1">
-          <div className="text-[#FFF72F]/60 font-mono text-[9px] tracking-widest px-2 mb-3">
+          <div className="text-[#FFF72F] font-mono text-[9px] tracking-widest px-2 mb-3">
             // NAVIGATION
           </div>
           {NAV.map(({ label, href, icon: Icon }) => {
@@ -112,11 +115,11 @@ export default function CyberDashboardShell({
                 className={`flex items-center gap-3 px-3 py-2.5 font-mono text-xs tracking-wider transition-all duration-150 group ${
                   active
                     ? "bg-[#FFF72F]/10 text-[#FFF72F] border-l-2 border-[#FFF72F]"
-                    : "text-[#FFF72F]/70 hover:text-[#FFF72F]/70 hover:bg-[#FFF72F]/5 border-l-2 border-transparent"
+                    : "text-[#FFF72F] hover:text-[#FFF72F] hover:bg-[#FFF72F]/5 border-l-2 border-transparent"
                 }`}
               >
                 <Icon
-                  className={`w-3.5 h-3.5 flex-shrink-0 ${active ? "text-[#FFF72F]" : "text-[#FFF72F]/70 group-hover:text-[#FFF72F]/60"}`}
+                  className={`w-3.5 h-3.5 flex-shrink-0 ${active ? "text-[#FFF72F]" : "text-[#FFF72F] group-hover:text-[#FFF72F]"}`}
                 />
                 {active ? `> ${label}` : label}
               </Link>
@@ -126,14 +129,14 @@ export default function CyberDashboardShell({
 
         {/* Bottom */}
         <div className="px-3 pb-4 border-t border-[#FFF72F]/10 pt-3">
-          <div className="text-[#FFF72F]/15 font-mono text-[9px] px-2 mb-3 leading-relaxed">
+          <div className="text-[#FFF72F]/80 font-mono text-[12px] px-2 mb-3 leading-relaxed">
             SYS_TIME:
             <br />
-            <span className="text-[#FFF72F]/70">{time}</span>
+            <span className="text-[#FFF72F]">{time}</span>
           </div>
           <button
             onClick={logout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 font-mono text-xs tracking-wider text-[#FFF72F]/70 hover:text-pink-hot hover:bg-pink-hot/5 transition-all"
+            className=" border border-[#FFF72F] w-full flex items-center gap-3 px-3 py-2.5 font-mono text-xs tracking-wider text-[#FFF72F] hover:bg-[#FFF72F]  transition-all hover:text-black duration-150 group clip-brutal-sm"
           >
             <LogOut className="w-3.5 h-3.5" />
             TERMINATE_SESSION
@@ -186,7 +189,7 @@ export default function CyberDashboardShell({
                       className={`flex items-center gap-3 px-3 py-2.5 font-mono text-xs tracking-wider transition-all border-l-2 ${
                         active
                           ? "bg-[#FFF72F]/10 text-[#FFF72F] border-[#FFF72F]"
-                          : "text-[#FFF72F]/70 hover:text-[#FFF72F]/70 border-transparent"
+                          : "text-[#FFF72F] hover:text-[#FFF72F] border-transparent"
                       }`}
                     >
                       <Icon className="w-3.5 h-3.5" />
@@ -198,7 +201,7 @@ export default function CyberDashboardShell({
               <div className="px-3 pb-4 border-t border-[#FFF72F]/10 pt-3">
                 <button
                   onClick={logout}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 font-mono text-xs text-[#FFF72F]/70 hover:text-pink-hot transition-all"
+                  className="border border-[#FFF72F] w-full flex items-center gap-3 px-3 py-2.5 font-mono text-xs tracking-wider text-[#FFF72F] hover:bg-[#FFF72F]  transition-all hover:text-black duration-150 group clip-brutal-sm"
                 >
                   <LogOut className="w-3.5 h-3.5" /> TERMINATE_SESSION
                 </button>
@@ -229,11 +232,11 @@ export default function CyberDashboardShell({
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-[#FFF72F] animate-pulse" />
-              <span className="text-[#FFF72F]/70 font-mono text-[10px] tracking-widest">
+              <span className="text-[#FFF72F] font-mono text-[10px] tracking-widest">
                 LIVE
               </span>
             </div>
-            <div className="text-[#FFF72F]/60 font-mono text-[10px] hidden md:block">
+            <div className="text-[#FFF72F] font-mono text-[10px] hidden md:block">
               {time}
             </div>
             <div className="w-7 h-7 border border-[#FFF72F]/30 flex items-center justify-center">

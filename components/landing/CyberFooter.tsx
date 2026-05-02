@@ -22,7 +22,7 @@ export default function CyberFooter() {
                 intensity="low"
               />
             </div>
-            <p className="text-[#FFF72F]/70 font-mono text-xs leading-relaxed max-w-xs">
+            <p className="text-[#FFF72F] font-mono text-xs leading-relaxed max-w-xs">
               {">"} Self-hosted analytics infrastructure.
               <br />
               {">"} Own your data. Zero compromise.
@@ -59,7 +59,7 @@ export default function CyberFooter() {
                   <li key={l}>
                     <a
                       href="#"
-                      className="text-[#FFF72F]/70 hover:text-[#FFF72F] font-mono text-xs transition-colors tracking-wider"
+                      className="text-[#FFF72F] hover:text-[#FFF72F] font-mono text-xs transition-colors tracking-wider"
                     >
                       {l.toUpperCase().replace(" ", "_")}
                     </a>
@@ -71,10 +71,10 @@ export default function CyberFooter() {
         </div>
 
         <div className="border-t border-[#FFF72F]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-[#FFF72F]/60 font-mono text-xs">
+          <div className="text-[#FFF72F] font-mono text-xs">
             © {new Date().getFullYear()} PULSE_ANALYTICS // ALL_RIGHTS_RESERVED
           </div>
-          <div className="text-[#FFF72F]/60 font-mono text-xs">
+          <div className="text-[#FFF72F] font-mono text-xs">
             BUILT_BY:{" "}
             <a
               href="https://github.com/mridul-ice"

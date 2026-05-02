@@ -115,7 +115,7 @@ export default function CyberHowItWorks() {
                     key={j}
                     className={
                       cmd.startsWith("//")
-                        ? "text-[#FFF72F]/70 mt-1"
+                        ? "text-[#FFF72F] mt-1"
                         : cmd.startsWith("{") ||
                             cmd.startsWith("}") ||
                             cmd.startsWith('"')

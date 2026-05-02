@@ -2,7 +2,7 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 const COLORS = [
-  "#00FF41",
+  "#FFF72F",
   "#00FFFF",
   "#FF0080",
   "#FFE000",
@@ -58,7 +58,7 @@ export default function CyberDonut({ data }: Props) {
           <div className="neon-green font-mono text-2xl font-bold">
             {total >= 1000 ? `${(total / 1000).toFixed(1)}K` : total}
           </div>
-          <div className="text-[#FFF72F]/70 font-mono text-[10px] tracking-widest">
+          <div className="text-[#FFF72F] font-mono text-[10px] tracking-widest">
             TOTAL
           </div>
         </div>

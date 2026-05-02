@@ -21,10 +21,7 @@ export const auth = {
   login: (data: { email: string; password: string }) =>
     request<{ access_token: string; refresh_token: string }>("/api/v1/auth/login", { method: "POST", body: JSON.stringify(data) }),
   logout: (refresh_token: string, token: string) =>
-    request("/api/v1/auth/logout", { method: "POST", body: JSON.stringify({ refresh_token }) }, token),
-  me: (token: string) => {
-    return request<{ id: string; name: string; slug: string }>("/api/v1/tenants/me", {}, token)
-  }
+    request("/api/v1/auth/logout", { method: "POST", body: JSON.stringify({ refresh_token }) }, token)
 }
 
 export const analytics = {

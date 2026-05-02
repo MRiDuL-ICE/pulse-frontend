@@ -4,14 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Activity, Terminal, Menu, X } from "lucide-react";
 import GlitchText from "@/components/effects/GlitchText";
-import { useAuth } from "@/hooks/useAuth";
-import { getAccessToken } from "@/lib/auth";
+import { useAuth } from "@/context/AuthContext";
 
 export default function CyberNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
   const { user } = useAuth();
+  // console.log("user", user);
 
   useEffect(() => {
     const tick = () => setTime(new Date().toISOString().slice(11, 19));
@@ -45,7 +45,7 @@ export default function CyberNav() {
             className="text-[#FFF72F] font-mono text-lg tracking-[0.2em] font-bold"
             intensity="low"
           />
-          <span className="text-[#FFF72F]/70 text-xs hidden md:block tracking-widest">
+          <span className="text-[#FFF72F] text-xs hidden md:block tracking-widest">
             v2.0.1
           </span>
         </Link>
@@ -72,18 +72,29 @@ export default function CyberNav() {
 
         {/* CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/login"
-            className="cyber-btn text-black hover:text-[#FFF72F] text-xs tracking-widest px-4 py-2 border border-[#FFF72F]/20 hover:border-[#FFF72F]/60 transition-all"
-          >
-            LOGIN
-          </Link>
-          <Link
-            href="/register"
-            className="cyber-btn bg-[#FFF72F] text-black text-xs tracking-widest px-4 py-2 font-bold clip-brutal-sm hover:shadow-neon-green transition-all"
-          >
-            INITIALIZE
-          </Link>
+          {user?.id ? (
+            <Link
+              href="/dashboard"
+              className="cyber-btn border border-[#FFF72F]/40 text-black text-xs tracking-widest hover:border-[#FFF72F] hover:shadow-neon-sm-green transition-all duration-200 clip-brutal-sm"
+            >
+              DASHBOARD
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="cyber-btn border border-[#FFF72F]/40 text-black text-xs tracking-widest hover:border-[#FFF72F] hover:shadow-neon-sm-green transition-all duration-200"
+              >
+                LOGIN
+              </Link>
+              <Link
+                href="/register"
+                className="cyber-btn border border-[#FFF72F]/40 text-black text-xs tracking-widest hover:border-[#FFF72F] hover:shadow-neon-sm-green transition-all duration-200 clip-brutal-sm"
+              >
+                INITIALIZE
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile */}
@@ -107,7 +118,7 @@ export default function CyberNav() {
                 key={l}
                 href={`#${l.toLowerCase()}`}
                 onClick={() => setOpen(false)}
-                className="text-[#FFF72F]/60 hover:text-[#FFF72F] text-xs tracking-widest font-mono py-2 border-b border-[#FFF72F]/10"
+                className="text-[#FFF72F] hover:text-[#FFF72F] text-xs tracking-widest font-mono py-2 border-b border-[#FFF72F]/10"
               >
                 // {l}
               </a>

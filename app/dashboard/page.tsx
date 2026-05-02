@@ -85,7 +85,7 @@ export default function DashboardOverview() {
         <div className="neon-green font-mono text-2xl font-bold tracking-tight">
           ANALYTICS_OVERVIEW
         </div>
-        <div className="text-[#FFF72F]/70 font-mono text-xs mt-1">
+        <div className="text-[#FFF72F] font-mono text-xs mt-1">
           {">"} LIVE_DATA // REFRESH_INTERVAL: 30s // CACHE: REDIS
         </div>
       </motion.div>
@@ -132,7 +132,7 @@ export default function DashboardOverview() {
             {pv?.data?.length ? (
               <CyberAreaChart data={pv.data} color="green" />
             ) : (
-              <div className="h-full flex items-center justify-center text-[#FFF72F]/60 font-mono text-xs">
+              <div className="h-full flex items-center justify-center text-[#FFF72F] font-mono text-xs">
                 {">"} NO_DATA // SEND_EVENTS_TO_POPULATE
               </div>
             )}
@@ -146,12 +146,12 @@ export default function DashboardOverview() {
           transition={{ delay: 0.3 }}
           className="bg-black border border-cyan-electric/20 p-5 relative"
         >
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-electric/50 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-electric to-transparent" />
           <div
             className="data-tag mb-1 inline-block"
             style={{
               borderColor: "rgba(0,255,255,0.3)",
-              color: "rgba(0,255,255,0.5)",
+              color: "rgba(0,255,255,0.9)",
             }}
           >
             // EVENT_MATRIX
@@ -162,7 +162,7 @@ export default function DashboardOverview() {
           {ev?.data?.length ? (
             <CyberDonut data={ev.data} />
           ) : (
-            <div className="h-44 flex items-center justify-center text-[#FFF72F]/60 font-mono text-xs">
+            <div className="h-44 flex items-center justify-center text-[#FFF72F] font-mono text-xs">
               NO_EVENTS
             </div>
           )}
@@ -184,7 +184,7 @@ export default function DashboardOverview() {
               TOP_PAGES_RANKED
             </div>
           </div>
-          <div className="text-[#FFF72F]/60 font-mono text-xs">
+          <div className="text-[#FFF72F] font-mono text-xs">
             {top?.data?.length ?? 0}_RESULTS
           </div>
         </div>
@@ -197,11 +197,11 @@ export default function DashboardOverview() {
                 className="flex items-center justify-between px-5 py-3 hover:bg-[#FFF72F]/3 transition-colors group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-6 text-[#FFF72F]/60 font-mono text-xs text-right">
+                  <div className="w-6 text-[#FFF72F] font-mono text-xs text-right">
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="w-px h-4 bg-[#FFF72F]/20" />
-                  <span className="text-[#FFF72F]/70 font-mono text-xs group-hover:text-[#FFF72F] transition-colors">
+                  <span className="text-[#FFF72F] font-mono text-xs group-hover:text-[#FFF72F] transition-colors">
                     {page.url}
                   </span>
                 </div>
@@ -222,7 +222,7 @@ export default function DashboardOverview() {
             ))}
           </div>
         ) : (
-          <div className="px-5 py-12 text-center text-[#FFF72F]/60 font-mono text-xs">
+          <div className="px-5 py-12 text-center text-[#FFF72F] font-mono text-xs">
             {">"} NO_PAGEVIEWS_RECORDED // EMBED_SNIPPET_TO_BEGIN
           </div>
         )}

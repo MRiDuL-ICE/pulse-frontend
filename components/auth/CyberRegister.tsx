@@ -94,7 +94,7 @@ export default function CyberRegister() {
         <div className="cyber-panel-cyan clip-brutal p-8">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-cyan-electric/10">
             <Terminal className="w-3.5 h-3.5 text-cyan-electric/50" />
-            <span className="text-cyan-electric/30 font-mono text-xs tracking-widest">
+            <span className="text-cyan-electric font-mono text-xs tracking-widest">
               NEW_TENANT_REGISTRATION
             </span>
             <div className="ml-auto w-2 h-2 bg-cyan-electric animate-pulse" />
@@ -126,7 +126,7 @@ export default function CyberRegister() {
                   className="w-full px-4 py-3 text-sm bg-black border border-cyan-electric/20 focus:border-cyan-electric focus:shadow-neon-sm-cyan text-cyan-electric outline-none transition-all font-mono placeholder:text-cyan-electric/20"
                 />
                 {key === "tenant_slug" && form.tenant_slug && (
-                  <div className="text-[#FFF72F]/70 font-mono text-[10px] mt-1.5">
+                  <div className="text-[#FFF72F] font-mono text-[10px] mt-1.5">
                     {">"} WORKSPACE_ID:{" "}
                     <span className="text-[#FFF72F]">{form.tenant_slug}</span>
                   </div>
@@ -152,7 +152,7 @@ export default function CyberRegister() {
                 <button
                   type="button"
                   onClick={() => setShowPw(!showPw)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-electric/30 hover:text-cyan-electric transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-electric hover:text-cyan-electric transition-colors"
                 >
                   {showPw ? (
                     <EyeOff className="w-4 h-4" />
@@ -182,11 +182,11 @@ export default function CyberRegister() {
           </form>
         </div>
 
-        <p className="text-center text-[#FFF72F]/60 font-mono text-xs mt-6">
+        <p className="text-center text-[#FFF72F] font-mono text-xs mt-6">
           HAVE_ACCOUNT?{" "}
           <Link
             href="/login"
-            className="text-[#FFF72F]/60 hover:text-[#FFF72F] transition-colors underline underline-offset-4"
+            className="text-[#FFF72F] hover:text-[#FFF72F] transition-colors underline underline-offset-4"
           >
             ACCESS_TERMINAL
           </Link>

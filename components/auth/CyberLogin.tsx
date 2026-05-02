@@ -14,7 +14,7 @@ export default function CyberLogin() {
   const [showPw, setShowPw] = useState(false);
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-6 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex items-center justify-center px-6 relative overflow-hidden pt-10">
       <MatrixRain opacity={0.12} />
 
       {/* Corner decorations */}
@@ -59,7 +59,7 @@ export default function CyberLogin() {
           {/* Panel header line */}
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#FFF72F]/10">
             <Terminal className="w-3.5 h-3.5 text-[#FFF72F]/50" />
-            <span className="text-[#FFF72F]/70 font-mono text-xs tracking-widest">
+            <span className="text-[#FFF72F] font-mono text-xs tracking-widest">
               LOGIN_SEQUENCE_INITIATED
             </span>
             <div className="ml-auto w-2 h-2 bg-[#FFF72F] animate-pulse" />
@@ -104,7 +104,7 @@ export default function CyberLogin() {
                 <button
                   type="button"
                   onClick={() => setShowPw(!showPw)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#FFF72F]/70 hover:text-[#FFF72F] transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#FFF72F] hover:text-[#FFF72F] transition-colors"
                 >
                   {showPw ? (
                     <EyeOff className="w-4 h-4" />
@@ -135,11 +135,11 @@ export default function CyberLogin() {
           </form>
         </div>
 
-        <p className="text-center text-[#FFF72F]/60 font-mono text-xs mt-6">
+        <p className="text-center text-[#FFF72F] font-mono text-xs mt-6">
           NO_ACCOUNT?{" "}
           <Link
             href="/register"
-            className="text-[#FFF72F]/60 hover:text-[#FFF72F] transition-colors underline underline-offset-4"
+            className="text-[#FFF72F] hover:text-[#FFF72F] transition-colors underline underline-offset-4"
           >
             INITIALIZE_NEW_TENANT
           </Link>

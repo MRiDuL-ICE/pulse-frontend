@@ -66,7 +66,7 @@ export default function EventsPage() {
         <div className="neon-cyan font-mono text-2xl font-bold">
           EVENT_BREAKDOWN
         </div>
-        <div className="text-[#FFF72F]/70 font-mono text-xs mt-1">
+        <div className="text-[#FFF72F] font-mono text-xs mt-1">
           {">"} ALL_EVENT_TYPES // LAST_7_DAYS // REDIS_CACHED
         </div>
       </motion.div>
@@ -78,7 +78,7 @@ export default function EventsPage() {
         className="bg-black border border-cyan-electric/20 p-5 relative inline-block"
       >
         <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-electric" />
-        <div className="text-cyan-electric/30 font-mono text-[10px] tracking-widest mb-1">
+        <div className="text-cyan-electric font-mono text-[10px] tracking-widest mb-1">
           TOTAL_EVENTS_7D
         </div>
         <div className="neon-cyan font-mono text-5xl font-bold">
@@ -146,7 +146,7 @@ export default function EventsPage() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-full flex items-center justify-center text-[#FFF72F]/60 font-mono text-xs">
+              <div className="h-full flex items-center justify-center text-[#FFF72F] font-mono text-xs">
                 {">"} NO_EVENTS
               </div>
             )}
@@ -167,7 +167,7 @@ export default function EventsPage() {
           {data?.data?.length ? (
             <CyberDonut data={data.data} />
           ) : (
-            <div className="h-44 flex items-center justify-center text-[#FFF72F]/60 font-mono text-xs">
+            <div className="h-44 flex items-center justify-center text-[#FFF72F] font-mono text-xs">
               NO_DATA
             </div>
           )}
@@ -198,7 +198,7 @@ export default function EventsPage() {
                   className="w-2 h-2"
                   style={{ background: COLORS[i % COLORS.length] }}
                 />
-                <span className="text-[#FFF72F]/70 font-mono text-xs uppercase tracking-wider">
+                <span className="text-[#FFF72F] font-mono text-xs uppercase tracking-wider">
                   {row.event_type}
                 </span>
               </div>
@@ -212,7 +212,7 @@ export default function EventsPage() {
                     }}
                   />
                 </div>
-                <span className="text-[#FFF72F]/70 font-mono text-[10px] w-10 text-right">
+                <span className="text-[#FFF72F] font-mono text-[10px] w-10 text-right">
                   {total ? ((row.count / total) * 100).toFixed(1) : 0}%
                 </span>
                 <span className="text-[#FFF72F] font-mono text-xs font-bold w-16 text-right">
@@ -222,7 +222,7 @@ export default function EventsPage() {
             </div>
           ))}
           {!data?.data?.length && !isLoading && (
-            <div className="px-5 py-10 text-center text-[#FFF72F]/60 font-mono text-xs">
+            <div className="px-5 py-10 text-center text-[#FFF72F] font-mono text-xs">
               {">"} NO_EVENTS_RECORDED
             </div>
           )}

@@ -115,7 +115,7 @@ export default function CyberPricing() {
                 )}
 
                 <div className="mb-6">
-                  <div className="text-[#FFF72F]/70 font-mono text-[10px] tracking-widest mb-1">
+                  <div className="text-[#FFF72F] font-mono text-[10px] tracking-widest mb-1">
                     {tier}
                   </div>
                   <div
@@ -128,7 +128,7 @@ export default function CyberPricing() {
                   >
                     {price}
                   </div>
-                  <div className="text-[#FFF72F]/70 font-mono text-xs mt-1">
+                  <div className="text-[#FFF72F] font-mono text-xs mt-1">
                     {sub}
                   </div>
                 </div>

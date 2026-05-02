@@ -181,6 +181,14 @@ body {
   position: relative;
   overflow: hidden;
   background-color: #00FFFF;
+  color: #000000;
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+
+.cyber-btn:hover {
+  background: #FFF72F;
+  color: #000000;
 }
 
 .cyber-btn::after {

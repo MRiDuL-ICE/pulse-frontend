@@ -64,7 +64,7 @@ export default function ApiKeysPage() {
           <div className="neon-green font-mono text-2xl font-bold">
             API_KEYS
           </div>
-          <div className="text-[#FFF72F]/70 font-mono text-xs mt-1">
+          <div className="text-[#FFF72F] font-mono text-xs mt-1">
             {">"} WRITE_ONLY // BCRYPT_HASHED // PREFIX_INDEXED
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function ApiKeysPage() {
               </span>
             </div>
           </div>
-          <div className="px-5 py-4 text-[#FFF72F]/70 font-mono text-xs">
+          <div className="px-5 py-4 text-[#FFF72F] font-mono text-xs">
             <p className="mb-3">
               {">"} Copy the snippet below and add it to your HTML
             </p>
@@ -118,7 +118,7 @@ export default function ApiKeysPage() {
             <div className="text-[#FFF72F] font-mono text-sm font-bold">
               ACTIVE_KEYS
             </div>
-            <div className="text-[#FFF72F]/60 font-mono text-xs">
+            <div className="text-[#FFF72F] font-mono text-xs">
               {keys?.length ?? 0}_TOTAL
             </div>
           </div>
@@ -143,13 +143,13 @@ export default function ApiKeysPage() {
                       <div className="text-[#FFF72F] font-mono text-xs font-bold truncate">
                         {key.name.toUpperCase()}
                       </div>
-                      <div className="text-[#FFF72F]/70 font-mono text-[10px] mt-0.5">
+                      <div className="text-[#FFF72F] font-mono text-[10px] mt-0.5">
                         {key.key_prefix}••••••••
                       </div>
                     </div>
                   </div>
 
-                  <div className="hidden sm:flex flex-col items-end text-[10px] font-mono text-[#FFF72F]/60 gap-0.5">
+                  <div className="hidden sm:flex flex-col items-end text-[10px] font-mono text-[#FFF72F] gap-0.5">
                     <span>CREATED: {formatDate(key.created_at)}</span>
                     {key.last_used_at && (
                       <span className="text-[#FFF72F]/80">
@@ -162,8 +162,8 @@ export default function ApiKeysPage() {
                     <div
                       className={`font-mono text-[10px] tracking-widest px-2 py-0.5 border ${
                         key.is_active
-                          ? "border-[#FFF72F]/30 text-[#FFF72F]/70 bg-[#FFF72F]/5"
-                          : "border-[#FFF72F]/10 text-[#FFF72F]/60"
+                          ? "border-[#FFF72F]/30 text-[#FFF72F] bg-[#FFF72F]/5"
+                          : "border-[#FFF72F]/10 text-[#FFF72F]"
                       }`}
                     >
                       {key.is_active ? "ACTIVE" : "REVOKED"}
@@ -180,7 +180,7 @@ export default function ApiKeysPage() {
                             revoke.mutate(key.id);
                           }
                         }}
-                        className="w-7 h-7 border border-[#FFF72F]/10 flex items-center justify-center text-[#FFF72F]/60 hover:text-pink-hot hover:border-pink-hot/40 transition-all"
+                        className="w-7 h-7 border border-[#FFF72F]/10 flex items-center justify-center text-[#FFF72F] hover:text-pink-hot hover:border-pink-hot/40 transition-all"
                       >
                         <Trash2 className="w-3 h-3" />
                       </button>
@@ -192,13 +192,13 @@ export default function ApiKeysPage() {
           ) : (
             <div className="py-16 flex flex-col items-center justify-center gap-5">
               <div className="w-12 h-12 border border-[#FFF72F]/20 flex items-center justify-center">
-                <Key className="w-5 h-5 text-[#FFF72F]/70" />
+                <Key className="w-5 h-5 text-[#FFF72F]" />
               </div>
               <div className="text-center">
                 <div className="text-[#FFF72F]/50 font-mono text-sm mb-1">
                   NO_API_KEYS_FOUND
                 </div>
-                <div className="text-[#FFF72F]/60 font-mono text-xs">
+                <div className="text-[#FFF72F] font-mono text-xs">
                   {">"} GENERATE_FIRST_KEY_TO_BEGIN_TRACKING
                 </div>
               </div>

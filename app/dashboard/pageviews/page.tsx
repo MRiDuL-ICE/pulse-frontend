@@ -44,7 +44,7 @@ export default function PageviewsPage() {
         <div className="neon-green font-mono text-2xl font-bold">
           TRAFFIC_ANALYSIS
         </div>
-        <div className="text-[#FFF72F]/70 font-mono text-xs mt-1">
+        <div className="text-[#FFF72F] font-mono text-xs mt-1">
           {">"} TIMESCALEDB_TIME_BUCKET // HOURLY_RESOLUTION
         </div>
       </motion.div>
@@ -66,7 +66,7 @@ export default function PageviewsPage() {
             className="bg-black border border-[#FFF72F]/20 p-5 relative"
           >
             <div className="absolute top-0 left-0 right-0 h-1 bg-[#FFF72F]" />
-            <div className="text-[#FFF72F]/70 font-mono text-[10px] tracking-widest mb-2">
+            <div className="text-[#FFF72F] font-mono text-[10px] tracking-widest mb-2">
               {label}
             </div>
             <div className="neon-green font-mono text-4xl font-bold">
@@ -96,9 +96,9 @@ export default function PageviewsPage() {
               <button
                 key={label}
                 onClick={() => setRange(days)}
-                className={`cyber-btn px-3 py-1.5 font-mono text-xs tracking-widest transition-all ${
+                className={`px-3 py-1.5 font-mono text-xs tracking-widest transition-all ${
                   range === days
-                    ? "bg-[#FFF72F] text-black"
+                    ? "bg-cyan-electric text-black"
                     : "text-[#FFF72F]/80 hover:text-[#FFF72F]"
                 }`}
               >
@@ -115,7 +115,7 @@ export default function PageviewsPage() {
           ) : data?.data?.length ? (
             <CyberAreaChart data={data.data} color="green" />
           ) : (
-            <div className="h-full flex items-center justify-center text-[#FFF72F]/60 font-mono text-xs">
+            <div className="h-full flex items-center justify-center text-[#FFF72F] font-mono text-xs">
               {">"} NO_DATA_IN_RANGE
             </div>
           )}
@@ -142,7 +142,7 @@ export default function PageviewsPage() {
                 {["TIMESTAMP", "PAGEVIEWS", "SHARE_%"].map((h) => (
                   <th
                     key={h}
-                    className={`px-5 py-3 text-[#FFF72F]/70 font-mono text-[10px] tracking-widest ${h === "TIMESTAMP" ? "text-left" : "text-right"}`}
+                    className={`px-5 py-3 text-[#FFF72F] font-mono text-[10px] tracking-widest ${h === "TIMESTAMP" ? "text-left" : "text-right"}`}
                   >
                     {h}
                   </th>
@@ -184,7 +184,7 @@ export default function PageviewsPage() {
             </tbody>
           </table>
           {!data?.data?.length && !isLoading && (
-            <div className="px-5 py-10 text-center text-[#FFF72F]/60 font-mono text-xs">
+            <div className="px-5 py-10 text-center text-[#FFF72F] font-mono text-xs">
               {">"} NO_DATA_FOR_RANGE
             </div>
           )}

@@ -109,7 +109,7 @@ export default function CyberFeatures() {
                   />
                 </div>
                 <div>
-                  <div className="text-[#FFF72F]/70 font-mono text-[10px] tracking-widest mb-1">
+                  <div className="text-[#FFF72F] font-mono text-[10px] tracking-widest mb-1">
                     {code}
                   </div>
                   <div
@@ -120,7 +120,7 @@ export default function CyberFeatures() {
                 </div>
               </div>
 
-              <p className="text-[#FFF72F]/80 font-mono text-xs leading-relaxed group-hover:text-[#FFF72F]/60 transition-colors">
+              <p className="text-[#FFF72F]/80 font-mono text-xs leading-relaxed group-hover:text-[#FFF72F] transition-colors">
                 {desc}
               </p>
             </motion.div>

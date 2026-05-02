@@ -49,7 +49,7 @@ export default function CyberStatCard({
       <div className={`absolute top-0 left-0 right-0 h-1 ${c.top}`} />
 
       <div className="flex items-start justify-between mb-3">
-        <div className="text-[#FFF72F]/60 font-mono text-[10px] tracking-widest">
+        <div className="text-[#FFF72F] font-mono text-[10px] tracking-widest">
           {label}
         </div>
         <Icon
@@ -64,7 +64,7 @@ export default function CyberStatCard({
       </div>
 
       {sub && (
-        <div className="text-[#FFF72F]/60 font-mono text-[10px] mt-2 tracking-wider">
+        <div className="text-[#FFF72F] font-mono text-[10px] mt-2 tracking-wider">
           {sub}
         </div>
       )}

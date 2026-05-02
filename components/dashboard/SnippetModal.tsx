@@ -24,7 +24,7 @@ const SnippetModal = ({ onClose }: SnippetModalProps) => {
       onClick={handleBackdropClick}
     >
       {/* Modal container - responsive sizing */}
-      <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-black border-2 border-cyan-400 rounded-lg">
+      <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-black border border-cyan-400 rounded-lg">
         {/* Header with close button */}
         <div className="flex items-center justify-between p-4 border-b border-cyan-400/30 sticky top-0 bg-black">
           <div className="text-cyan-400 font-mono text-sm font-bold">
@@ -113,7 +113,7 @@ const SnippetModal = ({ onClose }: SnippetModalProps) => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-[#FFF72F]/60 group-hover:text-[#FFF72F] transition-colors"
+                  className="text-[#FFF72F] group-hover:text-[#FFF72F] transition-colors"
                 >
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />

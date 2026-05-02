@@ -67,7 +67,7 @@ function CreateModal({
           </div>
           <button
             onClick={onClose}
-            className="text-[#FFF72F]/70 hover:text-[#FFF72F] transition-colors"
+            className="text-[#FFF72F] hover:text-[#FFF72F] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -124,7 +124,7 @@ function CreateModal({
 
               <button
                 onClick={copy}
-                className="cyber-btn w-full flex items-center justify-center gap-2 py-3 border border-[#FFF72F]/30 text-[#FFF72F]/70 hover:text-[#FFF72F] hover:border-[#FFF72F] font-mono text-xs tracking-widest transition-all mb-3"
+                className="cyber-btn w-full flex items-center justify-center gap-2 py-3 border border-[#FFF72F]/30 text-[#FFF72F] hover:text-[#FFF72F] hover:border-[#FFF72F] font-mono text-xs tracking-widest transition-all mb-3"
               >
                 {copied ? (
                   <>
