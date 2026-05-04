@@ -135,9 +135,9 @@ export default function CyberDashboardShell({
                     className={`w-1.5 h-1.5 rounded-full ${activeSite?.id === site.id ? "bg-cyan-electric" : ""}`}
                   />
                   <div className="text-left min-w-0">
-                    <div className="font-medium truncate">{site.name}</div>
+                    <div className="font-medium truncate">{site?.name}</div>
                     <div className="text-text-muted text-xs truncate">
-                      {site.domain}
+                      {site?.domain}
                     </div>
                   </div>
                 </button>
@@ -281,7 +281,7 @@ export default function CyberDashboardShell({
             <div className="flex items-center gap-2">
               <Terminal className="w-3.5 h-3.5 text-[#FFF72F]/80" />
               <span className="text-[#FFF72F]/80 font-mono text-xs tracking-widest hidden sm:block">
-                PULSE({activeSite!.name}) {">"} {currentLabel}
+                PULSE({activeSite?.name ?? "..."}) {">"} {currentLabel}
               </span>
             </div>
           </div>

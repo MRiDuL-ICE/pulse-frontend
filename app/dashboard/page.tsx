@@ -8,10 +8,10 @@ import { getAccessToken } from "@/lib/auth";
 import { formatNumber } from "@/lib/utils";
 import CyberStatCard from "@/components/dashboard/CyberStatCard";
 import CyberAreaChart from "@/components/charts/CyberAreaChart";
-
-export const dynamic = "force-dynamic";
 import CyberDonut from "@/components/charts/CyberDonut";
 import { useSite } from "@/context/SiteContext";
+
+export const dynamic = "force-dynamic";
 
 export default function DashboardOverview() {
   const [token, setToken] = useState("");
@@ -22,21 +22,21 @@ export default function DashboardOverview() {
   const { activeSite } = useSite();
 
   const { data: pv, isLoading: pvLoad } = useQuery({
-    queryKey: ["pv", token],
-    queryFn: () => analytics.pageviews(token, activeSite!.id),
-    enabled: !!token,
+    queryKey: ["pv", token, activeSite?.id],
+    queryFn: () => analytics.pageviews(token, activeSite?.id ?? ""),
+    enabled: !!token && !!activeSite?.id,
     refetchInterval: 30_000,
   });
   const { data: top } = useQuery({
-    queryKey: ["top", token],
-    queryFn: () => analytics.topPages(token, activeSite!.id, 8),
-    enabled: !!token,
+    queryKey: ["top", token, activeSite?.id],
+    queryFn: () => analytics.topPages(token, activeSite?.id ?? "", 8),
+    enabled: !!token && !!activeSite?.id,
     refetchInterval: 30_000,
   });
   const { data: ev } = useQuery({
-    queryKey: ["ev", token],
-    queryFn: () => analytics.eventBreakdown(token, activeSite!.id),
-    enabled: !!token,
+    queryKey: ["ev", token, activeSite?.id],
+    queryFn: () => analytics.eventBreakdown(token, activeSite?.id ?? ""),
+    enabled: !!token && !!activeSite?.id,
     refetchInterval: 30_000,
   });
 
@@ -103,7 +103,7 @@ export default function DashboardOverview() {
         className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 bg-[#FFF72F]/10"
       >
         {stats.map((s) => (
-          <CyberStatCard key={s.label} {...s} />
+          <CyberStatCard key={s?.label} {...s} />
         ))}
       </motion.div>
 
@@ -135,7 +135,7 @@ export default function DashboardOverview() {
           </div>
           <div className="h-52">
             {pv?.data?.length ? (
-              <CyberAreaChart data={pv.data} color="green" />
+              <CyberAreaChart data={pv?.data} color="green" />
             ) : (
               <div className="h-full flex items-center justify-center text-[#FFF72F] font-mono text-xs">
                 {">"} NO_DATA // SEND_EVENTS_TO_POPULATE
@@ -165,7 +165,7 @@ export default function DashboardOverview() {
             TYPE_DISTRIBUTION
           </div>
           {ev?.data?.length ? (
-            <CyberDonut data={ev.data} />
+            <CyberDonut data={ev?.data} />
           ) : (
             <div className="h-44 flex items-center justify-center text-[#FFF72F] font-mono text-xs">
               NO_EVENTS
@@ -196,9 +196,9 @@ export default function DashboardOverview() {
 
         {top?.data?.length ? (
           <div className="divide-y divide-[#FFF72F]/5">
-            {top.data.map((page, i) => (
+            {top?.data?.map((page, i) => (
               <div
-                key={page.url}
+                key={page?.url}
                 className="flex items-center justify-between px-5 py-3 hover:bg-[#FFF72F]/3 transition-colors group"
               >
                 <div className="flex items-center gap-4">
@@ -207,7 +207,7 @@ export default function DashboardOverview() {
                   </div>
                   <div className="w-px h-4 bg-[#FFF72F]/20" />
                   <span className="text-[#FFF72F] font-mono text-xs group-hover:text-[#FFF72F] transition-colors">
-                    {page.url}
+                    {page?.url}
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
@@ -215,12 +215,12 @@ export default function DashboardOverview() {
                     <div
                       className="absolute left-0 top-0 h-full bg-[#FFF72F] transition-all"
                       style={{
-                        width: `${(page.count / (top.data[0]?.count || 1)) * 100}%`,
+                        width: `${((page?.count ?? 0) / (top?.data?.[0]?.count ?? 1)) * 100}%`,
                       }}
                     />
                   </div>
                   <span className="text-[#FFF72F] font-mono text-xs w-16 text-right">
-                    {page.count.toLocaleString()}
+                    {page?.count?.toLocaleString() ?? "0"}
                   </span>
                 </div>
               </div>

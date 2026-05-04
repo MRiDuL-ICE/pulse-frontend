@@ -29,7 +29,7 @@ function CreateModal({
   const { activeSite } = useSite();
 
   const mut = useMutation({
-    mutationFn: () => apiKeys.create(token, name, activeSite!.id),
+    mutationFn: () => apiKeys.create(token, name, activeSite?.id ?? ""),
     onSuccess: (data) => {
       setCreatedKey(data.key);
       qc.invalidateQueries({ queryKey: ["apiKeys"] });

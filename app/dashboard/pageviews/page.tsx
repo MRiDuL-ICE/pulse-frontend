@@ -29,9 +29,9 @@ export default function PageviewsPage() {
   const end = new Date().toISOString();
 
   const { data, isLoading } = useQuery({
-    queryKey: ["pv-detail", token, range],
-    queryFn: () => analytics.pageviews(token, activeSite!.id, start, end),
-    enabled: !!token,
+    queryKey: ["pv-detail", token, range, activeSite?.id],
+    queryFn: () => analytics.pageviews(token, activeSite?.id ?? "", start, end),
+    enabled: !!token && !!activeSite?.id,
     refetchInterval: 30_000,
   });
 
@@ -167,7 +167,7 @@ export default function PageviewsPage() {
                       {new Date(row.bucket).toLocaleString()}
                     </td>
                     <td className="px-5 py-2.5 text-right text-[#FFF72F] font-mono text-xs font-bold">
-                      {row.count.toLocaleString()}
+                      {(row.count ?? 0).toLocaleString()}
                     </td>
                     <td className="px-5 py-2.5 text-right">
                       <div className="flex items-center justify-end gap-2">

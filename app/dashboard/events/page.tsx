@@ -12,13 +12,14 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-export const dynamic = "force-dynamic";
 import { analytics } from "@/lib/api";
 import { getAccessToken } from "@/lib/auth";
 import { formatNumber } from "@/lib/utils";
 import CyberDonut from "@/components/charts/CyberDonut";
 import { useAuth } from "@/hooks/useAuth";
 import { useSite } from "@/context/SiteContext";
+
+export const dynamic = "force-dynamic";
 
 const COLORS = [
   "#00FF41",
@@ -52,9 +53,9 @@ export default function EventsPage() {
   const { activeSite } = useSite();
 
   const { data, isLoading } = useQuery({
-    queryKey: ["ev-detail", token],
-    queryFn: () => analytics.eventBreakdown(token, activeSite!.id),
-    enabled: !!token,
+    queryKey: ["ev-detail", token, activeSite?.id],
+    queryFn: () => analytics.eventBreakdown(token, activeSite?.id ?? ""),
+    enabled: !!token && !!activeSite?.id,
     refetchInterval: 30_000,
   });
 
@@ -211,16 +212,16 @@ export default function EventsPage() {
                   <div
                     className="absolute left-0 top-0 h-full transition-all"
                     style={{
-                      width: `${total ? (row.count / total) * 100 : 0}%`,
+                      width: `${total ? ((row.count ?? 0) / total) * 100 : 0}%`,
                       background: COLORS[i % COLORS.length],
                     }}
                   />
                 </div>
                 <span className="text-[#FFF72F] font-mono text-[10px] w-10 text-right">
-                  {total ? ((row.count / total) * 100).toFixed(1) : 0}%
+                  {total ? (((row.count ?? 0) / total) * 100).toFixed(1) : 0}%
                 </span>
                 <span className="text-[#FFF72F] font-mono text-xs font-bold w-16 text-right">
-                  {row.count.toLocaleString()}
+                  {(row.count ?? 0).toLocaleString()}
                 </span>
               </div>
             </div>

@@ -8,9 +8,9 @@ import { getAccessToken } from "@/lib/auth";
 import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 import CreateModal from "@/components/dashboard/CreateModal";
+import SnippetModal from "@/components/dashboard/SnippetModal";
 
 export const dynamic = "force-dynamic";
-import SnippetModal from "@/components/dashboard/SnippetModal";
 
 export default function ApiKeysPage() {
   const [token, setToken] = useState("");
@@ -142,7 +142,7 @@ export default function ApiKeysPage() {
                     />
                     <div className="min-w-0">
                       <div className="text-[#FFF72F] font-mono text-xs font-bold truncate">
-                        {key.name.toUpperCase()}
+                        {key.name?.toUpperCase()}
                       </div>
                       <div className="text-[#FFF72F] font-mono text-[10px] mt-0.5">
                         {key.key_prefix}••••••••
@@ -175,10 +175,10 @@ export default function ApiKeysPage() {
                         onClick={() => {
                           if (
                             confirm(
-                              `REVOKE "${key.name}"? THIS_ACTION_IS_PERMANENT.`,
+                              `REVOKE "${key?.name}"? THIS_ACTION_IS_PERMANENT.`,
                             )
                           ) {
-                            revoke.mutate(key.id);
+                            revoke.mutate(key?.id);
                           }
                         }}
                         className="w-7 h-7 border border-[#FFF72F]/10 flex items-center justify-center text-[#FFF72F] hover:text-pink-hot hover:border-pink-hot/40 transition-all"

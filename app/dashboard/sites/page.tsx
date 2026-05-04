@@ -25,7 +25,7 @@ export default function SitesPage() {
   const createMutation = useMutation({
     mutationFn: () => sites.create(token, form.name, form.domain),
     onSuccess: (site) => {
-      toast.success(`// SITE_ADDED: ${site.name}`);
+      toast.success(`// SITE_ADDED: ${site?.name}`);
       setForm({ name: "", domain: "" });
       setShowForm(false);
       qc.invalidateQueries({ queryKey: ["sites"] });
@@ -75,13 +75,13 @@ export default function SitesPage() {
             <input
               className="w-full bg-black border border-[#FFF72F]/20 text-[#FFF72F] placeholder-[#FFF72F]/40 font-mono text-xs px-3 py-2.5 focus:outline-none focus:border-[#FFF72F]/50 transition-colors"
               placeholder="SITE_NAME"
-              value={form.name}
+              value={form?.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
             />
             <input
               className="w-full bg-black border border-[#FFF72F]/20 text-[#FFF72F] placeholder-[#FFF72F]/40 font-mono text-xs px-3 py-2.5 focus:outline-none focus:border-[#FFF72F]/50 transition-colors"
               placeholder="DOMAIN"
-              value={form.domain}
+              value={form?.domain}
               onChange={(e) =>
                 setForm((f) => ({ ...f, domain: e.target.value }))
               }
@@ -121,10 +121,10 @@ export default function SitesPage() {
                   <div className="w-2 h-2 bg-[#FFF72F] animate-pulse flex-shrink-0" />
                   <div className="min-w-0">
                     <div className="text-[#FFF72F] font-mono text-sm font-bold truncate">
-                      {site.name.toUpperCase()}
+                      {site?.name?.toUpperCase()}
                     </div>
                     <div className="text-[#FFF72F]/70 font-mono text-[10px] mt-0.5">
-                      {site.domain}
+                      {site?.domain}
                     </div>
                   </div>
                 </div>
@@ -146,10 +146,10 @@ export default function SitesPage() {
                     onClick={() => {
                       if (
                         confirm(
-                          `DEACTIVATE "${site.name}"? THIS_ACTION_IS_PERMANENT.`,
+                          `DEACTIVATE "${site?.name}"? THIS_ACTION_IS_PERMANENT.`,
                         )
                       ) {
-                        removeMutation.mutate(site.id);
+                        removeMutation.mutate(site?.id);
                       }
                     }}
                     className="w-8 h-8 border border-[#FFF72F]/10 flex items-center justify-center text-[#FFF72F] hover:text-pink-hot hover:border-pink-hot/40 transition-all"

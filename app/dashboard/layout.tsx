@@ -1,8 +1,6 @@
 import CyberDashboardShell from "@/components/dashboard/CyberDashboardShell";
 import { SiteProvider } from "@/context/SiteContext";
 
-export const dynamic = "force-dynamic";
-
 export default function DashboardLayout({
   children,
 }: {

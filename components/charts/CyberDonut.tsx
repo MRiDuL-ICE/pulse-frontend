@@ -19,10 +19,10 @@ const CustomTooltip = ({ active, payload }: any) => {
   return (
     <div className="bg-black border border-[#FFF72F]/60 px-4 py-2 font-mono">
       <div className="text-[#FFF72F]/80 text-[10px] tracking-widest capitalize mb-1">
-        {payload[0].name}
+        {payload[0]?.name}
       </div>
       <div className="text-[#FFF72F] text-sm font-bold">
-        {payload[0].value.toLocaleString()}
+        {payload[0]?.value.toLocaleString()}
       </div>
     </div>
   );
