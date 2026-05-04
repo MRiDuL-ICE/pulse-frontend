@@ -8,6 +8,8 @@ import { formatNumber } from "@/lib/utils";
 import CyberAreaChart from "@/components/charts/CyberAreaChart";
 import { useSite } from "@/context/SiteContext";
 
+export const dynamic = "force-dynamic";
+
 const RANGES = [
   { label: "24H", days: 1 },
   { label: "7D", days: 7 },

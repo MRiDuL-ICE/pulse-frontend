@@ -55,6 +55,7 @@ export default function CyberDashboardShell({
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Don't run during SSR/build
     const token = getAccessToken();
     if (!token) {
       router.push("/login");
@@ -62,8 +63,14 @@ export default function CyberDashboardShell({
     }
     tenant
       .me(token)
-      .then((t) => setTenantName(t.name.toUpperCase().replace(/\s+/g, "_")))
-      .catch(() => {});
+      .then((t) => {
+        if (t && t.name) {
+          setTenantName(t.name.toUpperCase().replace(/\s+/g, "_"));
+        } else {
+          setTenantName("UNKNOWN");
+        }
+      })
+      .catch(() => setTenantName("ERROR"));
   }, [router]);
 
   const currentLabel =
@@ -111,7 +118,7 @@ export default function CyberDashboardShell({
 
           {siteDropOpen && (
             <div className="absolute top-full left-0 right-0 mt-1 border border-cyan-electric rounded-lg shadow-xl z-50 overflow-hidden bg-[#FFF72F] text-black">
-              {allSites.map((site) => (
+              {(allSites || []).map((site) => (
                 <button
                   key={site.id}
                   onClick={() => {

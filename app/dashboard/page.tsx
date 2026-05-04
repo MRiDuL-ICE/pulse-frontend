@@ -8,6 +8,8 @@ import { getAccessToken } from "@/lib/auth";
 import { formatNumber } from "@/lib/utils";
 import CyberStatCard from "@/components/dashboard/CyberStatCard";
 import CyberAreaChart from "@/components/charts/CyberAreaChart";
+
+export const dynamic = "force-dynamic";
 import CyberDonut from "@/components/charts/CyberDonut";
 import { useSite } from "@/context/SiteContext";
 

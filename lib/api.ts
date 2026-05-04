@@ -1,6 +1,15 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost"
 
 async function request<T>(path: string, options: RequestInit = {}, token?: string): Promise<T> {
+  // Don't make API calls during build/SSR
+  if (typeof window === 'undefined') {
+    // Return default values based on type
+    if (path.includes('/sites')) return [] as T;
+    if (path.includes('/tenants/me')) return { id: '', name: 'UNKNOWN', slug: '' } as T;
+    if (path.includes('/api-keys')) return [] as T;
+    if (path.includes('/analytics/')) return { data: [] } as T;
+    return null as T;
+  }
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     ...(options.headers as Record<string, string>),

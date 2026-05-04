@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+export const dynamic = "force-dynamic";
 import { analytics } from "@/lib/api";
 import { getAccessToken } from "@/lib/auth";
 import { formatNumber } from "@/lib/utils";

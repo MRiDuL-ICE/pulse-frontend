@@ -7,6 +7,8 @@ import { Plus, Globe, Key, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useSite } from "@/context/SiteContext";
 
+export const dynamic = "force-dynamic";
+
 export default function SitesPage() {
   const token = getAccessToken() || "";
   const { setActiveSite, refresh } = useSite();

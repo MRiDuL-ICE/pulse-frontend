@@ -35,6 +35,7 @@ const THEMES = {
 } as const;
 
 type ThemeColor = keyof typeof THEMES;
+type Theme = (typeof THEMES)[ThemeColor];
 
 interface DataPoint {
   bucket: string;
@@ -56,7 +57,7 @@ const CustomTooltip = memo(function CustomTooltip({
   active?: boolean;
   payload?: Array<{ value: number }>;
   label?: string;
-  theme: typeof THEMES.green;
+  theme: Theme;
 }) {
   if (!active || !payload?.length) return null;
 

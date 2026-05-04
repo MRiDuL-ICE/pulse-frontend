@@ -8,6 +8,8 @@ import { getAccessToken } from "@/lib/auth";
 import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";
 import CreateModal from "@/components/dashboard/CreateModal";
+
+export const dynamic = "force-dynamic";
 import SnippetModal from "@/components/dashboard/SnippetModal";
 
 export default function ApiKeysPage() {

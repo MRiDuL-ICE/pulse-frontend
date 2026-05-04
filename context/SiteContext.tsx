@@ -31,14 +31,16 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
+    if (typeof window === "undefined") return; // Don't load during SSR/build
     const token = getAccessToken();
     if (!token) return;
     try {
       const data = await sites.list(token);
-      setAllSites(data);
+      setAllSites(data || []);
       // Restore last selected site from localStorage
       const savedId = localStorage.getItem("pulse_active_site");
-      const found = data.find((s) => s.id === savedId) ?? data[0] ?? null;
+      const found =
+        (data || []).find((s) => s.id === savedId) ?? (data || [])[0] ?? null;
       setActiveSiteState(found);
     } finally {
       setLoading(false);
