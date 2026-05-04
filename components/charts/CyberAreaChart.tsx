@@ -108,8 +108,10 @@ export default memo(function CyberAreaChart({ data, color = "green" }: Props) {
 
   // Memoize tick formatter to prevent recreation
   const tickFormatter = useMemo(
-    () => (value: number) =>
-      value >= 1000 ? `${(value / 1000).toFixed(0)}k` : value,
+    () => (value: string) =>
+      parseInt(value) >= 1000
+        ? `${(parseInt(value) / 1000).toFixed(0)}k`
+        : value,
     [],
   );
 

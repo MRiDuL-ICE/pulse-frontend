@@ -54,7 +54,7 @@ export default function CyberNav() {
         </Link>
 
         {/* CTAs */}
-        <div className="hidden md:flex items-center gap-3 border border-cyan-electric clip-brutal-lg px-10 py-2 text-cyan-electric font-mono text-xs font-bold tracking-widest animate-glow-clockwise transition-all duration-100">
+        <div className="hidden md:flex items-center gap-3 px-10 py-2 text-cyan-electric font-mono text-xs font-bold tracking-widest animate-glow-clockwise transition-all duration-100">
           {/* Nav links */}
           <div className="hidden md:flex items-end gap-6">
             {["FEATURES", "PROTOCOL", "PRICING"].map((label) => (
